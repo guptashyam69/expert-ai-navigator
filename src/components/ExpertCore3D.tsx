@@ -32,7 +32,7 @@ function Network() {
         </Float>
       ))}
       {nodes.slice(1).map((point, index) => (
-        <Line key={index} points={[nodes[index], point]} color="#22d3ee" lineWidth={.7} transparent opacity={.45} />
+        <Line key={index} points={[nodes[index] ?? nodes[0] ?? [0, 0, 0], point]} color="#22d3ee" lineWidth={.7} transparent opacity={.45} />
       ))}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.05, .012, 8, 96]} />
