@@ -1,6 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, BrainCircuit, Check, Expand, RotateCcw, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, BrainCircuit, Check, Cpu, Expand, RotateCcw, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ExpertCore3D = lazy(() => import("./ExpertCore3D").then((module) => ({ default: module.ExpertCore3D })));
@@ -50,6 +50,8 @@ export function ExpertSystemsDeck() {
 
       <section className="slide-stage" aria-live="polite">
         <div className="scanline" />
+        <div className="hud-corner hud-top"><span>AI/ES-03</span><i /></div>
+        <div className="hud-corner hud-bottom"><i /><span>NEURAL LINK ACTIVE</span></div>
         <div key={active} className="slide-enter h-full">
           {active === 0 && <TitleSlide />}
           {active === 1 && <DefinitionSlide />}
@@ -84,8 +86,8 @@ function Kicker({ number, children }: { number: string; children: React.ReactNod
 
 function TitleSlide() {
   return <div className="slide-grid title-layout">
-    <div className="title-copy"><Kicker number="01">KNOWLEDGE-DRIVEN ARTIFICIAL INTELLIGENCE</Kicker><h1>EXPERT<br /><em>SYSTEMS</em></h1><p>Machines that capture human expertise, reason through facts, and explain every conclusion.</p><div className="presenters"><span>03 PRESENTERS</span><i /><span>12 SLIDES</span><i /><span>01 LIVE DEMO</span></div></div>
-    <div className="core-panel"><ClientOnly fallback={<div className="core-fallback"><BrainCircuit /></div>}><Suspense fallback={<div className="core-fallback"><BrainCircuit /></div>}><ExpertCore3D /></Suspense></ClientOnly><div className="core-caption"><span>INFERENCE CORE</span><span className="live">● LIVE</span></div></div>
+    <div className="title-copy"><Kicker number="01">KNOWLEDGE-DRIVEN ARTIFICIAL INTELLIGENCE</Kicker><div className="system-pill"><Cpu /> SYMBOLIC AI · ONLINE</div><h1>EXPERT<br /><em>SYSTEMS</em></h1><p>Machines that capture human expertise, reason through facts, and explain every conclusion.</p><div className="presenters"><span>03 PRESENTERS</span><i /><span>12 SLIDES</span><i /><span>01 LIVE DEMO</span></div></div>
+    <div className="core-panel"><ClientOnly fallback={<div className="core-fallback"><BrainCircuit /></div>}><Suspense fallback={<div className="core-fallback"><BrainCircuit /></div>}><ExpertCore3D /></Suspense></ClientOnly><div className="target-ring" /><div className="telemetry"><span>RULES <b>600+</b></span><span>LATENCY <b>12ms</b></span><span>STATE <b>STABLE</b></span></div><div className="core-caption"><span>INFERENCE CORE / XAI-01</span><span className="live">● LIVE</span></div></div>
   </div>;
 }
 
@@ -94,7 +96,7 @@ function DefinitionSlide() {
 }
 
 function ArchitectureSlide() {
-  return <div className="slide-pad"><Kicker number="03">SYSTEM ARCHITECTURE</Kicker><h2 className="slide-title">Four parts. One intelligent decision.</h2><div className="architecture"><Node label="USER" sub="asks a question" /><span>→</span><Node label="INTERFACE" sub="captures facts" tone="amber" /><span>→</span><Node label="INFERENCE ENGINE" sub="fires rules" tone="lime" /><span>↔</span><Node label="KNOWLEDGE BASE" sub="facts + rules" /><div className="explain-line">EXPLANATION FACILITY · shows <strong>why</strong> the system reached its answer</div></div></div>;
+  return <div className="slide-pad architecture-slide"><Kicker number="03">SYSTEM ARCHITECTURE</Kicker><h2 className="slide-title">Four parts. One intelligent decision.</h2><div className="arch-orbit"><ClientOnly fallback={null}><Suspense fallback={null}><ExpertCore3D interactive={false} compact /></Suspense></ClientOnly></div><div className="architecture"><Node label="USER" sub="asks a question" /><span>→</span><Node label="INTERFACE" sub="captures facts" tone="amber" /><span>→</span><Node label="INFERENCE ENGINE" sub="fires rules" tone="lime" /><span>↔</span><Node label="KNOWLEDGE BASE" sub="facts + rules" /><div className="explain-line">EXPLANATION FACILITY · shows <strong>why</strong> the system reached its answer</div></div></div>;
 }
 
 function ReasoningSlide() {
